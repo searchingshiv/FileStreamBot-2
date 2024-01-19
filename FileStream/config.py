@@ -1,3 +1,5 @@
+import os
+from os import getenv
 from os import environ as env
 from dotenv import load_dotenv
 
