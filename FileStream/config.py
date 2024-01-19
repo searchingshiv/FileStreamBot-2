@@ -27,7 +27,7 @@ class Telegram:
     AUTH_USERS = list(set(int(x) for x in str(env.get("AUTH_USERS", "")).split()))
 
 class Server:
-    APP_NAME="The-Silent-Teams"
+    APP_NAME="f2l3345678-55dfbad499d0.herokuapp.com"
     PORT = int(env.get("PORT", 8080))
     BIND_ADDRESS = str(env.get("BIND_ADDRESS", "0.0.0.0"))
     PING_INTERVAL = int(env.get("PING_INTERVAL", "1200"))  # 20 minutes
