@@ -10,7 +10,7 @@ import secrets
 import mimetypes
 from aiohttp import web
 from aiohttp.http_exceptions import BadStatusLine
-from FileStream.bot import multi_clients, work_loads, StreamBot
+from FileStream.bot import multi_clients, work_loads, FileStream
 from FileStream.server.exceptions import FIleNotFound, InvalidHash
 from FileStream import StartTime, __version__
 from ..utils.time_format import get_readable_time
@@ -27,7 +27,7 @@ async def root_route_handler(_):
         {
             "server_status": "running",
             "uptime": get_readable_time(time.time() - StartTime),
-            "telegram_bot": "@" + StreamBot.username,
+            "telegram_bot": "@" + FileStream.username,
             "connected_bots": len(multi_clients),
             "loads": dict(
                 ("bot" + str(c + 1), l)
