@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>streamHeading</title>
     <meta charset="UTF-8">
@@ -7,83 +8,110 @@
     <meta http-equiv="X-Frame-Options" content="deny">
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
+    <link rel="stylesheet" href="https://biisal.github.io/Resources/StreamCSS.css">
+    <link rel="stylesheet" href="https://biisal.github.io/Resources/playerCss.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Your existing styles go here */
     </style>
 </head>
+
 <body>
-    <video id="stream-media" controls preload="auto">
-        <source src="" type="">
-        <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video
-        </p>
-    </video>
-    <div id="error-message"></div>
+    <nav>
+        <!-- Navigation from the second program -->
+        <div class="nleft">
+            <a href="https://t.me/THE_SILENT_TEAMS">
+                <h3 id="heading" style="z-index: 100;" class="magnet">THE SILENT TEAM</h3>
+            </a>
+        </div>
+        <div class="nryt">
+            <a class="home-btn magnet" href="#main" onclick="toggleWidthnav(this)">HOME</a>
+            <a href="#sec1" class="about-btn magnet" onclick="toggleWidthnav(this)">ABOUT</a>
+        </div>
+        <!-- End of Navigation from the second program -->
+    </nav>
+
+    <center>
+        <!-- About Navigation from the second program -->
+        <div class="about-nav">
+            <a href="#sec1" class="wlcm magnet" onclick="toggleWidth(this)">WELCOME</a>
+            <a href="#sec2" class="abt-chnl magnet" onclick="toggleWidth(this)">CHANNELS</a>
+            <a href="#sec3" class="magnet bot-btn" onclick="toggleWidth(this), bot_btn_clicked()">BOTS</a>
+            <a href="#sec4" class="magnet contact-btn" onclick="toggleWidth(this)">LET'S TALK</a>
+        </div>
+        <!-- End of About Navigation from the second program -->
+    </center>
+
+    <!-- Main Content from the first program -->
+    <div class="outer">
+        <div class="inner">
+            <div class="main" id="main">
+                <!-- Video Player from the first program -->
+                <video id="player" class="player" src="{{file_url}}" type="video/mp4" playsinline controls
+                    width="100%"></video>
+                <div class="player"></div>
+                <div class="file-name">
+                    <h4>File name : </h4>
+                    <br>
+                    <p id="myDiv">{{file_name}}</p>
+                </div>
+                <!-- Download Buttons from the first program -->
+                <div class="downloadBtn">
+                    <!-- Buttons for different players -->
+                </div>
+            </div>
+
+            <!-- About Section from the second program -->
+            <div class="abt">
+                <div class="about">
+                    <div class="about-dets">
+                        <!-- Sections for Welcome, Channels, Bots, and Let's Talk from the second program -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer from the second program -->
+    <footer>
+        <!-- Mid Section from the second program -->
+        <div class="mid">
+            <h1 class="mid-text">VISIT <a href="#sec3" onclick="bot_btn_clicked()"><span>OUR BOTS LIST</span></a> FOR
+                MORE INFO</h1>
+        </div>
+
+        <!-- Last Section from the second program -->
+        <div class="last-text">
+            <!-- Copyright and Disclaimer from the second program -->
+        </div>
+
+        <!-- Movie Container and Copyright from the second program -->
+        <center>
+            <!-- Movie Container Section from the second program -->
+        </center>
+    </footer>
+
+    <!-- JavaScript Libraries from the second program -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.155.0/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/automat/controlkit.js@master/bin/controlKit.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sheryjs/dist/Shery.js"></script>
+    <script src="js/wow.min.js"></script>
     <script>
-        var player = new Plyr('#stream-media', {
-            controls: ['play-large', 'rewind', 'play', 'fast-forward', 'progress', 'current-time', 'mute', 'settings', 'pip', 'fullscreen'],
-            settings: ['speed', 'loop'],
-            speed: { selected: 1, options: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2] },
-            seek: 10,
-            keyboard: { focused: true, global: true },
-            // Additional configuration for audio tracks
-            audio: {
-                sources: [
-                    {
-                        src: 'path/to/audio/track1.mp3',
-                        type: 'audio/mp3',
-                        title: 'Audio Track 1'
-                    },
-                    {
-                        src: 'path/to/audio/track2.mp3',
-                        type: 'audio/mp3',
-                        title: 'Audio Track 2'
-                    },
-                    // Add more audio tracks as needed
-                ],
-                defaultTrack: 0 // Set the default audio track index
-            }
-        });
-
-        var mediaLink = "streamMediaLink";
-
-        if (mediaLink) {
-            document.querySelector('#stream-media source').setAttribute('src', mediaLink);
-            player.restart();
-
-            var downloadButton = document.createElement('div');
-            downloadButton.className = 'plyr-download-button';
-
-            downloadButton.onclick = function () {
-                event.stopPropagation();
-                var link = document.createElement('a');
-                link.href = mediaLink;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            };
-
-            player.elements.container.querySelector('.plyr__video-wrapper').appendChild(downloadButton);
-
-            var shareButton = document.createElement('div');
-            shareButton.className = 'plyr-share-button';
-
-            shareButton.onclick = function () {
-                event.stopPropagation();
-                if (navigator.share) {
-                    navigator.share({
-                        title: "Play",
-                        url: window.location.href
-                    });
-                }
-            };
-
-            player.elements.container.querySelector('.plyr__video-wrapper').appendChild(shareButton);
-
-        } else {
-            document.getElementById('error-message').textContent = 'Error: Media URL not provided';
-        }
+        new WOW().init();
     </script>
+    <script src="https://cdn.plyr.io/3.6.9/plyr.js"></script>
+    <script src="https://biisal.github.io/Resources/StreamJs.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
