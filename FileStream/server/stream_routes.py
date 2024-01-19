@@ -16,7 +16,7 @@ from FileStream import StartTime, __version__
 from ..utils.time_format import get_readable_time
 from ..utils.custom_dl import ByteStreamer
 from FileStream.utils.render_template import render_page
-from FileStream.config import Var
+from FileStream.config import Telegram
 
 
 routes = web.RouteTableDef()
@@ -92,7 +92,7 @@ async def media_streamer(request: web.Request, id: int, secure_hash: str):
     index = min(work_loads, key=work_loads.get)
     faster_client = multi_clients[index]
     
-    if Var.MULTI_CLIENT:
+    if Telegram.MULTI_CLIENT:
         logging.info(f"Client {index} is now serving {request.remote}")
 
     if faster_client in class_cache:
